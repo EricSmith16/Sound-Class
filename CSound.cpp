@@ -73,11 +73,17 @@ void CSound::NewFrame (SoundFrame frame)
 {
 	_LocalIndex = frame.m_iLocalIndex;
 	_EyePos = frame.m_vEyePos;
+	_Alive = frame.m_IsAlive;
 }
 
 void CSound::Push (int idx, int ent_channel, char* sound_file, float* origin, SoundFlags flags)
 {
 	if (!IsValid (idx, ent_channel))
+		return;
+
+	cl_entity_s* pLocal = g_pEngine->GetLocalPlayer ();
+
+	if (!_Alive && pLocal->curstate.iuser1 == OBS_IN_EYE && pLocal->curstate.iuser2 == idx)
 		return;
 
 	if (!(flags & SndFlags_LocalIndex) && IsLocal (idx))

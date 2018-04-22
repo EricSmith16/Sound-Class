@@ -17,6 +17,7 @@ struct SoundFrame
 {
 	Vector		m_vEyePos;
 	int			m_iLocalIndex;
+	bool		m_IsAlive;
 };
 
 struct SoundInfo
@@ -42,6 +43,7 @@ private:
 
 	Vector		_EyePos;
 	int			_LocalIndex;
+	bool		_Alive;
 
 	bool		IsValid (int idx, int ent_channel);
 	bool		IsLocal (int idx);
