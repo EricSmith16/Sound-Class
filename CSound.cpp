@@ -97,7 +97,7 @@ void CSound::Push (int idx, int ent_channel, char* sound_file, float* origin, So
 	if (sound_origin.IsZero ())
 		return;
 
-	if (flags & SndFlags_OnlyInvisible && !IsVisible (sound_origin))
+	if (flags & SndFlags_OnlyInvisible && IsVisible (sound_origin))
 		return;
 
 	if (flags & SndFlags_ResolveIndex && idx > MAX_CLIENTS)
